@@ -84,6 +84,9 @@ async def run_userbot():
                 await asyncio.sleep(10)
                 continue
 
+        # Share the current client with the Bot UI immediately so it can handle login
+        set_userbot_client(client, client_wrapper)
+        
         # Check authorization
         is_authorized = await client_wrapper.is_authorized()
         
@@ -117,7 +120,6 @@ async def run_userbot():
             except Exception as e:
                 logger.error(f"Failed to fetch user details: {e}")
         
-        set_userbot_client(client, client_wrapper)
         
         should_reload = not plugin_loader or plugin_loader.client != client
         
