@@ -60,13 +60,14 @@ def setup(ether, db, owner_id):
     DELAY = 1.5             # slight adjustment for single tags
     
     # MongoDB collection for process tracking
-    tag_col = db["tag_tasks"]
+    if db is not None:
+        tag_col = db["tag_tasks"]
 
 # ============================================
 # Universal Tag Handler
 # ============================================
 
-    @ether.on(events.NewMessage(pattern=r"^\.(tagall|gmtag|gntag)(?:(?:\s+)(.+))?$", outgoing=True))
+    @ether.on(events.NewMessage(pattern=r"^\.(tagall|gmtag|gntag|tagstop)(?:(?:\s+)(.+))?$", outgoing=True))
     async def universal_tag_handler(event):
         if event.sender_id != owner_id:
             return
@@ -80,9 +81,10 @@ def setup(ether, db, owner_id):
         chat_id = event.chat_id
         
         # Check for stop command
-        if arg and arg.lower() == "stop":
+        if cmd == "tagstop" or (arg and arg.lower() == "stop"):
             tag_col.update_one({"chat_id": chat_id}, {"$set": {"active": False}})
-            await event.edit(f"<blockquote><b>Action Success:</b> Stopping {cmd.capitalize()}...</blockquote>")
+            msg = "Tagging Process" if cmd == "tagstop" else cmd.capitalize()
+            await event.edit(f"<blockquote><b>Action Success:</b> {msg} has been terminated.</blockquote>")
             return
 
         # Determine mode

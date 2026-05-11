@@ -67,7 +67,7 @@ class EtherMongo:
 
     async def ensure_indexes(self):
         """Creates indexes to ensure lightning-fast lookups."""
-        if not self.db:
+        if self.db is None:
             return
         try:
             # Autoreplies: Trigger lookup
@@ -98,32 +98,32 @@ class EtherMongo:
     # Collection accessors
     @property
     def dm_users(self):
-        return self.db["dm_users"] if self.db else None
+        return self.db["dm_users"] if self.db is not None else None
     
     @property
     def dm_config(self):
-        return self.db["dm_config"] if self.db else None
+        return self.db["dm_config"] if self.db is not None else None
     
     @property
     def settings(self):
-        return self.db["settings"] if self.db else None
+        return self.db["settings"] if self.db is not None else None
     
     @property
     def shortcuts(self):
-        return self.db["shortcuts"] if self.db else None
+        return self.db["shortcuts"] if self.db is not None else None
 
 
     @property
     def dm_shield(self):
-        return self.db["dm_shield"] if self.db else None
+        return self.db["dm_shield"] if self.db is not None else None
 
     @property
     def messages(self):
-        return self.db["messages"] if self.db else None
+        return self.db["messages"] if self.db is not None else None
 
     @property
     def autoreplies(self):
-        return self.db["autoreplies"] if self.db else None
+        return self.db["autoreplies"] if self.db is not None else None
  
 # Global instance
 ether_db = EtherMongo()

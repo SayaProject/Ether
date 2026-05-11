@@ -141,6 +141,7 @@ def setup(ether, db, owner_id):
             "• <code>.tagall &lt;msg&gt;</code> - Mention all\n"
             "• <code>.gmtag &lt;msg&gt;</code> - Morning tag\n"
             "• <code>.gntag &lt;msg&gt;</code> - Night tag\n"
+            "• <code>.tagstop</code> - Stop all tagging\n"
             "• <code>.fonts &lt;text&gt;</code> - Style text\n"
             "</blockquote>"
         )

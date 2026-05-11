@@ -419,7 +419,7 @@ async def cb_tagall(event):
         "<b>Tips:</b>\n"
         "• Works only in groups\n"
         "• Skips bots & deleted users\n"
-        "• Use <code>.&lt;cmd&gt; stop</code> to cancel process"
+        "• Use <code>.tagstop</code> or <code>.&lt;cmd&gt; stop</code> to cancel"
         "</blockquote>",
         
         buttons=[[Button.inline("Back", b"help_back")]]
