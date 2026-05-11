@@ -145,38 +145,37 @@ async def startup():
     
     logger.info("Core integrity check: PASSED")
     
-    # 1. Fetch bot identity first (sequential)
+    tasks = []
+    
+    # 1. Start web service FIRST so Render sees an open port immediately
+    if Config.WEB_SERVICE:
+        web_task = asyncio.create_task(run_web_service())
+        tasks.append(web_task)
+        # Give it a moment to bind the port before proceeding
+        await asyncio.sleep(1)
+    
+    # 2. Fetch bot identity (sequential, fast)
     if Config.BOT_TOKEN:
         try:
             await init_bot_identity()
         except Exception as e:
             logger.error(f"Bot Identity: FAILED ({e})")
     
-    # 2. Start all components as concurrent tasks
-    tasks = []
-    
-    # Userbot task
+    # 3. Start userbot and bot UI as concurrent tasks
     userbot_task = asyncio.create_task(run_userbot())
     tasks.append(userbot_task)
     
-    # Bot UI task
     if Config.BOT_TOKEN:
         bot_task = asyncio.create_task(run_bot())
         tasks.append(bot_task)
     
-    # Web Service task
-    if Config.WEB_SERVICE:
-        web_task = asyncio.create_task(run_web_service())
-        tasks.append(web_task)
-    
-    # 3. Wait for components
+    # 4. Keep alive — wait for all tasks (any failure is logged, not fatal)
     try:
-        # We wait for the userbot task primarily as it's the core
-        await userbot_task
+        await asyncio.gather(*tasks, return_exceptions=True)
     except Exception as e:
         logger.error(f"System: CRITICAL FAILURE ({e})")
     finally:
-        # Cleanup all tasks on exit
+        # Cleanup all remaining tasks on exit
         for task in tasks:
             if not task.done():
                 task.cancel()
