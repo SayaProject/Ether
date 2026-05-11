@@ -37,6 +37,7 @@ from config.channels import get_channel_list, get_channels
 from utils.logger import get_logger
 from services.dm_shield_service import DMShieldService
 from core.user_client import EtherUserClient
+from storage.mongo import ether_db
 
 logger = get_logger("EtherBot")
 
@@ -849,6 +850,17 @@ async def bot_login_flow_handler(event):
                 "</blockquote>"
             )
             logger.info("Login successful")
+
+            # ── Persist Session to MongoDB ────────────────────────────────────
+            try:
+                if userbot_wrapper:
+                    session_str = userbot_wrapper.get_session_string()
+                    if session_str:
+                        await ether_db.save_session(Config.SESSION_NAME, session_str)
+                        logger.info("Session: SAVED to database after OTP login.")
+            except Exception as db_err:
+                logger.warning(f"Session save failed (non-critical): {db_err}")
+            # ─────────────────────────────────────────────────────────────────
         except SessionPasswordNeededError:
             state["step"] = "2fa"
             await event.reply(
@@ -934,6 +946,17 @@ async def bot_login_flow_handler(event):
                 "</blockquote>"
             )
             logger.info("2FA login successful")
+
+            # ── Persist Session to MongoDB ────────────────────────────────────
+            try:
+                if userbot_wrapper:
+                    session_str = userbot_wrapper.get_session_string()
+                    if session_str:
+                        await ether_db.save_session(Config.SESSION_NAME, session_str)
+                        logger.info("Session: SAVED to database after 2FA login.")
+            except Exception as db_err:
+                logger.warning(f"Session save failed (non-critical): {db_err}")
+            # ─────────────────────────────────────────────────────────────────
         except Exception as e:
             del login_state[Config.OWNER_ID]
             await event.reply(f"<blockquote>❌ <b>Error</b>\n\nFailed to verify 2FA: {str(e)}</blockquote>")
@@ -985,10 +1008,19 @@ async def bot_remove_handler(event):
         except Exception as e:
             logger.error(f"Failed to remove session journal: {e}")
     
+    # ── Clear session from MongoDB ────────────────────────────────────────────
+    try:
+        if ether_db.db is not None:
+            await ether_db.db.sessions.delete_one({"name": Config.SESSION_NAME})
+            logger.info("Session: DELETED from database.")
+    except Exception as db_err:
+        logger.warning(f"Session DB delete failed (non-critical): {db_err}")
+    # ─────────────────────────────────────────────────────────────────────────
+    
     if deleted:
         await event.reply(
             "🗑️ <b>Session Removed</b>\n\n"
-            "Your session has been deleted.\n"
+            "Your session has been deleted from disk and database.\n"
             "Use /login to create a new session."
         )
     else:

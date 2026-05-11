@@ -71,7 +71,22 @@ async def run_userbot():
         logger.warning("Database: DISCONNECTED (Running in limited mode)")
     else:
         logger.info(f"Database: CONNECTED ({Config.DB_NAME})")
-    
+
+    # ── Session Bootstrap ─────────────────────────────────────────────────────
+    # Try to load a previously saved session from MongoDB so we don't need
+    # to re-login after every restart (critical for cloud/ephemeral hosts).
+    if db_connected:
+        stored_session = await ether_db.get_session(Config.SESSION_NAME)
+        if stored_session:
+            logger.info("Session: FOUND in database — resuming stored session.")
+            client_wrapper.init_client(stored_session)
+        else:
+            logger.info("Session: NOT found in database — starting blank session.")
+            client_wrapper.init_client()
+    else:
+        client_wrapper.init_client()
+    # ─────────────────────────────────────────────────────────────────────────
+
     while not shutdown_event.is_set():
         # Initialize/get the current client
         client = client_wrapper.get_client()
@@ -117,6 +132,17 @@ async def run_userbot():
                     Config.OWNER_USERNAME = me.username
                     Config.OWNER_MENTION = f"<a href='tg://user?id={me.id}'>{me.first_name}</a>"
                     logger.info(f"Session: AUTHORIZED (User: {Config.OWNER_NAME})")
+
+                    # ── Persist Session ───────────────────────────────────────
+                    # Save/refresh the session string in MongoDB after every
+                    # successful auth. This keeps the stored session fresh.
+                    if db_connected:
+                        session_str = client_wrapper.get_session_string()
+                        if session_str:
+                            await ether_db.save_session(Config.SESSION_NAME, session_str)
+                            logger.info("Session: SAVED to database.")
+                    # ─────────────────────────────────────────────────────────
+
             except Exception as e:
                 logger.error(f"Failed to fetch user details: {e}")
         

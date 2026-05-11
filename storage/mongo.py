@@ -124,6 +124,25 @@ class EtherMongo:
     @property
     def autoreplies(self):
         return self.db["autoreplies"] if self.db is not None else None
+
+    @property
+    def sessions(self):
+        return self.db["sessions"] if self.db is not None else None
+
+    async def get_session(self, name: str) -> str:
+        """Retrieves a session string from DB."""
+        if self.db is None: return None
+        doc = await self.db.sessions.find_one({"name": name})
+        return doc.get("session") if doc else None
+
+    async def save_session(self, name: str, session: str):
+        """Saves a session string to DB securely."""
+        if self.db is None: return
+        await self.db.sessions.update_one(
+            {"name": name},
+            {"$set": {"session": session}},
+            upsert=True
+        )
  
 # Global instance
 ether_db = EtherMongo()
