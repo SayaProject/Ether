@@ -39,7 +39,7 @@ def setup(ether, db, owner_id):
 
         if event.sender_id != owner_id:
             return
-        msg = await event.reply("<blockquote>🏓 <i>Pinging...</i></blockquote>", parse_mode="html")
+        msg = await event.reply("<blockquote>🏓 <i>Pinging...</i></blockquote>")
         
         latency = int((time.time() - start) * 1000)
         
@@ -48,7 +48,7 @@ def setup(ether, db, owner_id):
             f"🏓 <b>Pong!</b>\n"
             f"⚡ <code>{latency}ms</code>"
             "</blockquote>",
-            parse_mode="html"
+            
         )
         
         try:

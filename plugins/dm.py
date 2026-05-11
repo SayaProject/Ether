@@ -82,7 +82,7 @@ def setup(ether, db, owner_id):
             return
         
         if not event.is_private:
-            await event.edit("<blockquote>❌ Use in private chat.</blockquote>", parse_mode="html")
+            await event.edit("<blockquote>❌ Use in private chat.</blockquote>")
             return
         
         user_id = event.chat_id
@@ -95,7 +95,7 @@ def setup(ether, db, owner_id):
             return
         
         if not event.is_private:
-            await event.edit("<blockquote>❌ Use in private chat.</blockquote>", parse_mode="html")
+            await event.edit("<blockquote>❌ Use in private chat.</blockquote>")
             return
         
         user_id = event.chat_id
@@ -125,7 +125,7 @@ def setup(ether, db, owner_id):
                 "<code>[Button.url('Button Text', 'https://example.com')]</code>\n"
                 "💡 <b>Tip:</b> Include button code in your message text."
                 "</blockquote>",
-                parse_mode="html"
+                
             )
             return
         
@@ -215,7 +215,7 @@ def setup(ether, db, owner_id):
             await event.edit(response)
         except Exception as e:
             logger.error(f"Failed to save welcome: {e}")
-            await event.edit("<blockquote>❌ Failed to save welcome message.</blockquote>", parse_mode="html")
+            await event.edit("<blockquote>❌ Failed to save welcome message.</blockquote>")
     
 
 # ============================================
@@ -247,7 +247,7 @@ def setup(ether, db, owner_id):
         max_warns = int(event.pattern_match.group(1))
         
         await dm_service.set_global_max_warns(owner_id, max_warns)
-        await event.edit(f"<blockquote>⚠️ Global max warnings set to {max_warns}.</blockquote>", parse_mode="html")
+        await event.edit(f"<blockquote>⚠️ Global max warnings set to {max_warns}.</blockquote>")
     
     @ether.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
     async def dm_handler(event):
@@ -296,9 +296,9 @@ def setup(ether, db, owner_id):
                     except Exception as inline_err:
                         logger.error(f"Inline query failed: {inline_err}")
                 if welcome_image:
-                    await event.respond(file=welcome_image, message=text, parse_mode="html")
+                    await event.respond(file=welcome_image, message=text)
                 else:
-                    await event.respond(text, parse_mode="html")
+                    await event.respond(text)
             except Exception as e:
                 logger.error(f"Failed to send welcome: {e}")
         
@@ -309,7 +309,7 @@ def setup(ether, db, owner_id):
         
         if user.get("blocked"):
             try:
-                await event.reply("<blockquote>⛔ You are blocked from contacting this user.</blockquote>", parse_mode="html")
+                await event.reply("<blockquote>⛔ You are blocked from contacting this user.</blockquote>")
                 await ether(BlockRequest(user_id))
             except Exception as e:
                 logger.error(f"Block error for {user_id}: {e}")

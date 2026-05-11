@@ -48,6 +48,7 @@ class EtherUserClient:
                 Config.API_ID,
                 Config.API_HASH
             )
+            self._client.parse_mode = 'html'
         return self._client
 
     async def connect(self) -> bool:

@@ -41,6 +41,7 @@ from core.user_client import EtherUserClient
 logger = get_logger("EtherBot")
 
 bot = TelegramClient('bot', Config.API_ID, Config.API_HASH)
+bot.parse_mode = 'html'
 
 # Store login state temporarily
 login_state = {}
@@ -95,8 +96,7 @@ async def inline_help(event):
             title="Ether Help Menu",
             description="Click to see help with buttons",
             text="<blockquote>🔥 <b>Ether Userbot Help</b>\n\nSelect a feature below:</blockquote>",
-            buttons=main_buttons,
-            parse_mode="html"
+            buttons=main_buttons
         )
         
         await event.answer([result], cache_time=0)
@@ -147,8 +147,7 @@ async def inline_help(event):
                         file=WELCOME_DATA["image"],
                         id="welcome_msg",
                         text=WELCOME_DATA["text"],
-                        buttons=buttons,
-                        parse_mode="html"
+                        buttons=buttons
                     )
                 else:
                     result = builder.article(
@@ -156,8 +155,7 @@ async def inline_help(event):
                         title="Welcome Message",
                         description="DM Protection Welcome",
                         text=WELCOME_DATA["text"],
-                        buttons=buttons,
-                        parse_mode="html"
+                        buttons=buttons
                     )
                 
                 await event.answer([result], cache_time=0)
@@ -211,8 +209,7 @@ async def inline_help(event):
                         file=image,
                         id=f"shortcut_{shortcut_name}",
                         text=text,
-                        buttons=buttons,
-                        parse_mode="html"
+                        buttons=buttons
                     )
                 else:
                     result = builder.article(
@@ -220,8 +217,7 @@ async def inline_help(event):
                         title=f"Shortcut: {shortcut_name}",
                         description="Saved shortcut content",
                         text=text,
-                        buttons=buttons,
-                        parse_mode="html"
+                        buttons=buttons
                     )
                 
                 await event.answer([result], cache_time=0)
@@ -258,8 +254,7 @@ async def inline_help(event):
                 title="Font Styles",
                 description="Preview styled text",
                 text=result_text,
-                buttons=buttons,
-                parse_mode="html"
+                buttons=buttons
             )
 
             await event.answer([result], cache_time=0)
@@ -304,8 +299,7 @@ async def inline_help(event):
                 [
                     Button.url("📂 Repository", "https://github.com/LearningBotsOfficial/Ether")
                 ]
-            ],
-            parse_mode="html"
+            ]
         )
 
         await event.answer([result], cache_time=0)
@@ -320,8 +314,7 @@ async def inline_help(event):
 async def cb_back(event):
     await event.edit(
         "<blockquote>🔥 <b>Ether Userbot Help</b>\n\nSelect a feature below:</blockquote>",
-        buttons=main_buttons,
-        parse_mode="html"
+        buttons=main_buttons
     )
 
 # ============================================
@@ -350,8 +343,7 @@ async def cb_dm(event):
         "• <b>Auto-block</b> at max warnings\n\n"
         "Use <code>.setwarn &lt;number&gt;</code> to change limit"
         "</blockquote>",
-        buttons=[[Button.inline("🔙 Back", b"help_back")]],
-        parse_mode="html"
+        buttons=[[Button.inline("🔙 Back", b"help_back")]]
     )
 
 # ============================================
@@ -380,8 +372,7 @@ async def cb_shortcut(event):
         "• Button format: <code>[Button.url('Text', 'URL')]</code>\n"
         "• Button format: <code>[Button.inline('Text', 'data')]</code>"
         "</blockquote>",
-        buttons=[[Button.inline("🔙 Back", b"help_back")]],
-        parse_mode="html"
+        buttons=[[Button.inline("🔙 Back", b"help_back")]]
     )
 
 # ============================================
@@ -405,8 +396,7 @@ async def cb_tagall(event):
         "• Uses safe limits to protect your account"
         "</blockquote>",
         
-        buttons=[[Button.inline("🔙 Back", b"help_back")]],
-        parse_mode="html"
+        buttons=[[Button.inline("🔙 Back", b"help_back")]]
     )
 
 # ============================================
@@ -423,8 +413,7 @@ async def cb_ping(event):
         "<code>.ping</code> - Check response time\n\n"
         "Returns time in milliseconds."
         "</blockquote>",
-        buttons=[[Button.inline("🔙 Back", b"help_back")]],
-        parse_mode="html"
+        buttons=[[Button.inline("🔙 Back", b"help_back")]]
     )
 
 # ============================================
@@ -439,8 +428,7 @@ async def cb_system(event):
         "• MongoDB\n"
         "• Plugins"
         "</blockquote>",
-        buttons=[[Button.inline("🔙 Back", b"help_back")]],
-        parse_mode="html"
+        buttons=[[Button.inline("🔙 Back", b"help_back")]]
     )
 
 # ============================================
@@ -473,8 +461,7 @@ async def cb_fonts(event):
         "• Combine with shortcuts for fast reuse"
         "</blockquote>",
         
-        buttons=[[Button.inline("🔙 Back", b"help_back")]],
-        parse_mode="html"
+        buttons=[[Button.inline("🔙 Back", b"help_back")]]
     )
 
 # ============================================
@@ -495,7 +482,7 @@ async def font_callbacks(event):
             "</blockquote>"
         )
 
-        await event.edit(result, parse_mode="html")
+        await event.edit(result)
 
     elif data.startswith("font_mix:"):
         text = data.split(":", 1)[1]
@@ -511,8 +498,7 @@ async def font_callbacks(event):
         await event.edit(
             f"<blockquote>"
             f"🎲 <b>Mixed Style</b>\n\n<code>{mixed}</code>"
-            "</blockquote>",
-            parse_mode="html"
+            "</blockquote>"
         )
 
 # ============================================
@@ -545,8 +531,7 @@ async def cb_shield(event):
         "Use allow system to whitelist trusted users."
         "</blockquote>",
         
-        buttons=[[Button.inline("🔙 Back", b"help_back")]],
-        parse_mode="html"
+        buttons=[[Button.inline("🔙 Back", b"help_back")]]
     )
 
 # ============================================
@@ -584,8 +569,7 @@ async def bot_start_handler(event):
             event.chat_id,
             file=BOT_WELCOME_IMAGE,
             caption=BOT_WELCOME_TEXT,
-            buttons=bot_dm_buttons,
-            parse_mode="html"
+            buttons=bot_dm_buttons
         )
 
     except Exception as e:
@@ -595,8 +579,7 @@ async def bot_start_handler(event):
             await bot.send_message(
                 event.chat_id,
                 BOT_WELCOME_TEXT,
-                buttons=bot_dm_buttons,
-                parse_mode="html"
+                buttons=bot_dm_buttons
             )
             logger.info(f"Bot /start fallback sent to user {event.sender_id}")
         except Exception as e2:
@@ -610,7 +593,7 @@ async def bot_start_handler(event):
 @bot.on(events.NewMessage(pattern=r"^/login$", incoming=True, func=lambda e: e.is_private))
 async def bot_login_handler(event):
     if event.sender_id != Config.OWNER_ID:
-        await event.reply("<blockquote>❌ This command is only for the admin.</blockquote>", parse_mode="html")
+        await event.reply("<blockquote>❌ This command is only for the admin.</blockquote>")
         return
     
     if userbot_client is None:
@@ -625,8 +608,7 @@ async def bot_login_handler(event):
         "Please enter your phone number with country code.\n\n"
         "<i>Example: +9198*****</i>\n\n"
         "Send /cancel to abort."
-        "</blockquote>",
-        parse_mode="html"
+        "</blockquote>"
     )
     logger.info(f"Login initiated by owner {Config.OWNER_ID}")
 
@@ -642,7 +624,7 @@ async def bot_cancel_handler(event):
     
     if Config.OWNER_ID in login_state:
         del login_state[Config.OWNER_ID]
-        await event.reply("<blockquote>❌ Login cancelled.</blockquote>", parse_mode="html")
+        await event.reply("<blockquote>❌ Login cancelled.</blockquote>")
 
 
 # ============================================
@@ -687,17 +669,16 @@ async def bot_login_flow_handler(event):
                 f"<blockquote>"
                 f"📩 Send OTP with spaces (e.g. 1 2 3 4 5)\n\n"
                 "Send /cancel to abort."
-                "</blockquote>",
-                parse_mode="html"
+                "</blockquote>"
             )
             logger.info(f"OTP sent to {phone}")
         except FloodWaitError as e:
             del login_state[Config.OWNER_ID]
-            await event.reply(f"<blockquote>⏳ <b>Flood Wait</b>\n\nPlease wait {e.seconds} seconds before trying again.</blockquote>", parse_mode="html")
+            await event.reply(f"<blockquote>⏳ <b>Flood Wait</b>\n\nPlease wait {e.seconds} seconds before trying again.</blockquote>")
             logger.warning(f"Flood wait: {e.seconds}s")
         except Exception as e:
             del login_state[Config.OWNER_ID]
-            await event.reply(f"<blockquote>❌ <b>Error</b>\n\nFailed to send OTP: {str(e)}</blockquote>", parse_mode="html")
+            await event.reply(f"<blockquote>❌ <b>Error</b>\n\nFailed to send OTP: {str(e)}</blockquote>")
             logger.error(f"OTP send error: {e}")
     
     elif state["step"] == "otp":
@@ -772,8 +753,7 @@ async def bot_login_flow_handler(event):
                 "The userbot has been reconnected.\n"
                 "Joined official channels automatically.\n\n"
                 "You can now use all commands."
-                "</blockquote>",
-                parse_mode="html"
+                "</blockquote>"
             )
             logger.info("Login successful")
         except SessionPasswordNeededError:
@@ -783,21 +763,20 @@ async def bot_login_flow_handler(event):
                 "🔐 <b>2FA Required</b>\n\n"
                 "Please enter your two-factor authentication password.\n\n"
                 "Send /cancel to abort."
-                "</blockquote>",
-                parse_mode="html"
+                "</blockquote>"
             )
             logger.info("2FA required")
         except PhoneCodeInvalidError:
             del login_state[Config.OWNER_ID]
-            await event.reply("<blockquote>❌ <b>Invalid Code</b>\n\nThe OTP you entered is incorrect. Please try /login again.</blockquote>", parse_mode="html")
+            await event.reply("<blockquote>❌ <b>Invalid Code</b>\n\nThe OTP you entered is incorrect. Please try /login again.</blockquote>")
             logger.warning("Invalid OTP entered")
         except PhoneCodeExpiredError:
             del login_state[Config.OWNER_ID]
-            await event.reply("<blockquote>❌ <b>Code Expired</b>\n\nThe OTP has expired. Please try /login again.</blockquote>", parse_mode="html")
+            await event.reply("<blockquote>❌ <b>Code Expired</b>\n\nThe OTP has expired. Please try /login again.</blockquote>")
             logger.warning("OTP expired")
         except Exception as e:
             del login_state[Config.OWNER_ID]
-            await event.reply(f"<blockquote>❌ <b>Error</b>\n\nFailed to verify OTP: {str(e)}</blockquote>", parse_mode="html")
+            await event.reply(f"<blockquote>❌ <b>Error</b>\n\nFailed to verify OTP: {str(e)}</blockquote>")
             logger.error(f"OTP verify error: {e}")
     
     elif state["step"] == "2fa":
@@ -866,13 +845,12 @@ async def bot_login_flow_handler(event):
                 "Your session has been created with 2FA.\n"
                 "The userbot has been reconnected.\n"
                 "You can now use all commands."
-                "</blockquote>",
-                parse_mode="html"
+                "</blockquote>"
             )
             logger.info("2FA login successful")
         except Exception as e:
             del login_state[Config.OWNER_ID]
-            await event.reply(f"<blockquote>❌ <b>Error</b>\n\nFailed to verify 2FA: {str(e)}</blockquote>", parse_mode="html")
+            await event.reply(f"<blockquote>❌ <b>Error</b>\n\nFailed to verify 2FA: {str(e)}</blockquote>")
             logger.error(f"2FA verify error: {e}")
 
 # ============================================
@@ -882,7 +860,7 @@ async def bot_login_flow_handler(event):
 @bot.on(events.NewMessage(pattern=r"^/remove$", incoming=True, func=lambda e: e.is_private))
 async def bot_remove_handler(event):
     if event.sender_id != Config.OWNER_ID:
-        await event.reply("<blockquote>❌ This command is only for the admin.</blockquote>", parse_mode="html")
+        await event.reply("<blockquote>❌ This command is only for the admin.</blockquote>")
         return
     
     session_file = f"{Config.SESSION_NAME}.session"
@@ -925,14 +903,12 @@ async def bot_remove_handler(event):
         await event.reply(
             "🗑️ <b>Session Removed</b>\n\n"
             "Your session has been deleted.\n"
-            "Use /login to create a new session.",
-            parse_mode="html"
+            "Use /login to create a new session."
         )
     else:
         await event.reply(
             "ℹ️ <b>No Session Found</b>\n\n"
-            "No session file exists to remove.",
-            parse_mode="html"
+            "No session file exists to remove."
         )
 
 

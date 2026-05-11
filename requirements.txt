@@ -2,9 +2,9 @@
 # Ether Userbot Requirements
 # ============================
 
-telethon==1.36.0
+telethon>=1.43.0
 pymongo[srv]>=4.13.0
 python-dotenv>=1.0.1
 fastapi
 uvicorn[standard]
-psutil
+psutil

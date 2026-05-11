@@ -49,7 +49,7 @@ def setup(ether, db, owner_id):
                 "<code>.disallow</code> - Disallow user\n\n"
                 "<i>Bot identity not initialized. Please wait or check your BOT_TOKEN.</i>"
                 "</blockquote>",
-                parse_mode="html"
+                
             )
             return
         
@@ -72,7 +72,7 @@ def setup(ether, db, owner_id):
                     "<code>.allow</code> - Allow user\n\n"
                     "<i>Bot inline query failed.</i>"
                     "</blockquote>",
-                    parse_mode="html"
+                    
                 )
         except Exception as e:
             logger.error(f"Inline help failed: {e}")
@@ -87,7 +87,7 @@ def setup(ether, db, owner_id):
                 "<code>.allow</code> - Allow user\n"
                 "<code>.disallow</code> - Disallow user"
                 "</blockquote>",
-                parse_mode="html"
+                
             )
     
     logger.info("Help plugin loaded (inline mode)")

@@ -76,7 +76,7 @@ def setup(ether, db, owner_id):
                     f"🖥️ <b>CPU:</b> {cpu}%\n"
                     f"📊 <b>RAM:</b> {ram}%\n"
                     f"💾 <b>Disk:</b> {disk}%",
-                    parse_mode="html"
+                    
                 )
 
         except Exception as e:
