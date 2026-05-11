@@ -24,8 +24,8 @@ import asyncio
 
 def setup(ether, db, owner_id):
 
-    BATCH_SIZE = 1          # users per message
-    DELAY = 3              # seconds between batches
+    BATCH_SIZE = 5          # users per message
+    DELAY = 2              # seconds between batches
     MAX_USERS = 100        # safety limit
 
 # ============================================

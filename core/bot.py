@@ -628,6 +628,26 @@ async def bot_cancel_handler(event):
 
 
 # ============================================
+# Bot Restart Handler
+# ============================================
+
+@bot.on(events.NewMessage(pattern=r"^/restart$", incoming=True, func=lambda e: e.is_private))
+async def bot_restart_handler(event):
+    if event.sender_id != Config.OWNER_ID:
+        return
+        
+    await event.reply("<blockquote>🔄 <b>System Restart Initiated</b>\n\nThe bot is restarting now...</blockquote>")
+    
+    # Give it a moment
+    await asyncio.sleep(2)
+    
+    import sys
+    import os
+    logger.info("Restarting system via Bot UI /restart command")
+    os.execv(sys.executable, [sys.executable] + sys.argv)
+
+
+# ============================================
 # Bot Login Flow Handler
 # ============================================
 

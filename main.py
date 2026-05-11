@@ -25,7 +25,7 @@ import time
 import os
 
 try:
-    import uvloop
+    import uvloop # type: ignore
 except ImportError:
     uvloop = None
 
@@ -37,6 +37,7 @@ from config.config import Config
 from config.channels import validate_integrity
 from utils.logger import setup_logger, get_logger
 from web_service import run_web_service
+from utils.task_helper import safe_run
 
 logger = get_logger("EtherMain")
 
@@ -174,7 +175,7 @@ async def startup():
     
     # 1. Start web service FIRST so Render sees an open port immediately
     if Config.WEB_SERVICE:
-        web_task = asyncio.create_task(run_web_service())
+        web_task = safe_run(run_web_service(), name="WebService")
         tasks.append(web_task)
         # Give it a moment to bind the port before proceeding
         await asyncio.sleep(1)
@@ -187,11 +188,11 @@ async def startup():
             logger.error(f"Bot Identity: FAILED ({e})")
     
     # 3. Start userbot and bot UI as concurrent tasks
-    userbot_task = asyncio.create_task(run_userbot())
+    userbot_task = safe_run(run_userbot(), name="UserbotCore")
     tasks.append(userbot_task)
     
     if Config.BOT_TOKEN:
-        bot_task = asyncio.create_task(run_bot())
+        bot_task = safe_run(run_bot(), name="BotUI")
         tasks.append(bot_task)
     
     # 4. Keep alive — wait for all tasks (any failure is logged, not fatal)

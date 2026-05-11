@@ -61,8 +61,8 @@ def setup(ether, db, owner_id):
         except Exception as e:
             logger.error(f"Failed to load shortcuts data: {e}")
     
-    import asyncio
-    asyncio.create_task(load_shortcuts_data())
+    from utils.task_helper import safe_run
+    safe_run(load_shortcuts_data(), name="LoadShortcutsData")
 
 
 # ============================================

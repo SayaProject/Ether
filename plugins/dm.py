@@ -69,8 +69,8 @@ def setup(ether, db, owner_id):
         except Exception as e:
             logger.error(f"Failed to load welcome data: {e}")
     
-    import asyncio
-    asyncio.create_task(load_welcome_data())
+    from utils.task_helper import safe_run
+    safe_run(load_welcome_data(), name="LoadWelcomeData")
 
 # ============================================
 # Allow Command

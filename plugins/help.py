@@ -90,4 +90,37 @@ def setup(ether, db, owner_id):
                 
             )
     
+    @ether.on(events.NewMessage(pattern=r"^\.commands$", outgoing=True))
+    async def commands_handler(event):
+        if event.sender_id != owner_id:
+            return
+            
+        command_list = (
+            "<blockquote>"
+            "📜 <b>Available Commands</b>\n\n"
+            "<b>System:</b>\n"
+            "• <code>.alive</code> - System status\n"
+            "• <code>.ping</code> - Check latency\n"
+            "• <code>.help</code> - Interactive help\n"
+            "• <code>.commands</code> - This list\n\n"
+            "<b>DMs & Protection:</b>\n"
+            "• <code>.allow</code> - Allow user\n"
+            "• <code>.disallow</code> - Disallow user\n"
+            "• <code>.setwelcome</code> - Set DM welcome\n"
+            "• <code>.clearwelcome</code> - Clear DM welcome\n"
+            "• <code>.setwarn &lt;n&gt;</code> - Set max warns\n"
+            "• <code>.shield</code> - Shield control\n\n"
+            "<b>Shortcuts:</b>\n"
+            "• <code>.shortcut &lt;name&gt;</code> - Save reply\n"
+            "• <code>.get &lt;name&gt;</code> - Send shortcut\n"
+            "• <code>.shortcuts</code> - List all\n"
+            "• <code>.delshortcut &lt;name&gt;</code> - Delete\n\n"
+            "<b>Utility:</b>\n"
+            "• <code>.tagall &lt;msg&gt;</code> - Mention all\n"
+            "• <code>.fonts &lt;text&gt;</code> - Style text\n"
+            "</blockquote>"
+        )
+        
+        await event.edit(command_list)
+
     logger.info("Help plugin loaded (inline mode)")

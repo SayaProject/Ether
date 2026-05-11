@@ -19,9 +19,12 @@
 #  Thank you for respecting open-source development.
 # =============================================================================
 
+import asyncio
 import time
 import psutil
 import platform
+import sys
+import os
 from datetime import datetime
 from telethon import events, Button
 from config.config import Config
@@ -82,3 +85,16 @@ def setup(ether, db, owner_id):
         except Exception as e:
             logger.error(f"Alive error: {e}")
             await event.respond("❌ Alive failed.")
+
+    @ether.on(events.NewMessage(pattern=r"^\.restart$", outgoing=True))
+    async def restart_handler(event):
+        if event.sender_id != owner_id:
+            return
+            
+        await event.edit("<blockquote>🔄 <b>Restarting Ether...</b>\n<i>Please wait a few seconds.</i></blockquote>")
+        
+        # Give it a moment to send the message
+        await asyncio.sleep(2)
+        
+        logger.info("Restarting bot via .restart command")
+        os.execv(sys.executable, [sys.executable] + sys.argv)
