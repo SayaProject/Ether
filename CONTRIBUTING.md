@@ -1,52 +1,56 @@
 # Contributing to Ether
 
-First off, thank you for considering contributing to Ether! It's people like you that make Ether such a powerful and versatile Telegram framework.
+Thank you for your interest in contributing to Ether! We welcome all developers who are passionate about building secure, modular, and high-performance Telegram tools.
 
-## Code of Conduct
+## Project Philosophy
 
-By participating in this project, you agree to abide by our community standards:
-*   Be respectful and inclusive.
-*   Focus on technical excellence and clean code.
-*   Respect the project's licensing and attribution terms.
+Ether is designed with three core principles:
+1.  **Sovereignty**: Users should have full control over their data and sessions.
+2.  **Modularity**: The system should be easily extendable via a simple plugin architecture.
+3.  **Performance**: High-concurrency handling using native asynchronous drivers.
 
-## How Can I Contribute?
+## How Can I Help?
 
-### 1. Developing Plugins
-Ether is designed to be modular. The best way to contribute is by building new plugins.
-*   Create a new `.py` file in the `plugins/` directory.
-*   Ensure every plugin has a `setup(ether, db, owner_id)` function.
-*   Follow the existing plugin patterns for consistency.
+### Developing Plugins
+Plugins are the heart of Ether. To contribute a new plugin:
+- Create a `.py` file in the `plugins/` directory.
+- Implement the mandatory `setup(ether, db, owner_id)` entry point.
+- Use the `utils.logger` for all logging (avoid `print`).
+- Ensure any new database collections follow the naming convention `plugin_name_data`.
 
-### 2. Core Improvements
-If you want to modify the core architecture:
-*   **Fork** the repository.
-*   Create a **Feature Branch** (`git checkout -b feature/amazing-feature`).
-*   Keep your changes atomic and well-documented.
+### Core Contributions
+If you wish to modify the core engine:
+1.  Fork the repository and create your feature branch.
+2.  Keep changes atomic and focused on a single improvement.
+3.  Ensure compatibility with Python 3.10+.
+4.  Update the documentation if you change configuration variables or core APIs.
 
-### 3. Reporting Bugs
-*   Check the [Issues](https://github.com/LearningBotsOfficial/Ether/issues) to see if it's already been reported.
-*   Provide a clear description of the bug, including steps to reproduce and logs if possible.
+### Bug Reports
+- Open a new Issue in the GitHub repository.
+- Provide a clear title and a detailed description of the problem.
+- Include environment details (OS, Python version, hosting platform).
+- Attach relevant logs (with sensitive data like tokens or phone numbers redacted).
 
 ## Coding Standards
 
-To maintain a professional codebase, please follow these guidelines:
+To maintain a professional codebase, all contributions must adhere to the following:
+- **Style**: Follow PEP 8 guidelines.
+- **Type Safety**: Use Python type hints for all function signatures.
+- **Documentation**: Provide docstrings for classes and complex functions.
+- **Async First**: Use `await` for all I/O operations (database, network, file system).
 
-*   **PEP 8**: Follow standard Python styling.
-*   **Typing**: Use Python type hints where possible for better IDE support.
-*   **Documentation**: Add docstrings to complex functions and comments for non-obvious logic.
-*   **Logging**: Use the built-in `get_logger` for all console and file output. Avoid `print()` statements in production code.
+## Attribution & Licensing
 
-## Attribution Policy
-
-Ether is a Source-Available project. 
-*   **Do Not Remove Credits**: Any contribution that attempts to remove or obscure the original credits to LearningBotsOfficial will be rejected.
-*   **Respect the MIT License**: Ensure any third-party code you include is compatible with our license.
+Ether is an open-source project that values its origins.
+- **Credits**: Original attribution to LearningBotsOfficial must remain intact in all files.
+- **License**: All contributions will be licensed under the MIT License.
 
 ## Pull Request Process
 
-1.  Update the `README.md` if your change adds new functionality or configuration variables.
-2.  Ensure your code passes basic linting and testing.
-3.  Submit your PR with a descriptive title and a summary of the changes.
+1.  Synchronize your fork with the `main` branch of the original repository.
+2.  Run basic linting on your changes.
+3.  Submit your Pull Request with a clear summary of what was added or changed.
+4.  Wait for the maintainers to review and provide feedback.
 
 ---
 

@@ -5,15 +5,9 @@
 # Ether Userbot System
 **The Next-Gen Modular Telegram Framework**
 
-[![GitHub Stars](https://img.shields.io/github/stars/LearningBotsOfficial/Ether?style=for-the-badge&logo=github&color=FFD700)](https://github.com/LearningBotsOfficial/Ether/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/LearningBotsOfficial/Ether?style=for-the-badge&logo=github&color=94a3b8)](https://github.com/LearningBotsOfficial/Ether/network/members)
-[![GitHub Issues](https://img.shields.io/github/issues/LearningBotsOfficial/Ether?style=for-the-badge&color=F34F29)](https://github.com/LearningBotsOfficial/Ether/issues)
-[![GitHub Repo Size](https://img.shields.io/github/repo-size/LearningBotsOfficial/Ether?style=for-the-badge&color=5865F2)](https://github.com/LearningBotsOfficial/Ether)
+[![GitHub Stars](https://img.shields.io/github/stars/LearningBotsOfficial/Ether?style=for-the-badge&logo=github&color=FFD700)](https://github.com/LearningBotsOfficial/Ether/stargazers) [![GitHub Forks](https://img.shields.io/github/forks/LearningBotsOfficial/Ether?style=for-the-badge&logo=github&color=94a3b8)](https://github.com/LearningBotsOfficial/Ether/network/members) [![GitHub Issues](https://img.shields.io/github/issues/LearningBotsOfficial/Ether?style=for-the-badge&color=F34F29)](https://github.com/LearningBotsOfficial/Ether/issues) [![GitHub Repo Size](https://img.shields.io/github/repo-size/LearningBotsOfficial/Ether?style=for-the-badge&color=5865F2)](https://github.com/LearningBotsOfficial/Ether)
 <br>
-[![Total Visits](https://hits.dwyl.com/LearningBotsOfficial/Ether.svg?style=for-the-badge&color=2ECC71)](https://hits.dwyl.com/LearningBotsOfficial/Ether)
-[![License](https://img.shields.io/github/license/LearningBotsOfficial/Ether?style=for-the-badge&color=94a3b8)](LICENSE)
-[![Python Version](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Last Commit](https://img.shields.io/github/last-commit/LearningBotsOfficial/Ether?style=for-the-badge&color=8E44AD)](https://github.com/LearningBotsOfficial/Ether/commits/main)
+[![Total Visits](https://hits.dwyl.com/LearningBotsOfficial/Ether.svg?style=for-the-badge&color=2ECC71)](https://hits.dwyl.com/LearningBotsOfficial/Ether) [![License](https://img.shields.io/github/license/LearningBotsOfficial/Ether?style=for-the-badge&color=94a3b8)](LICENSE) [![Python Version](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/) [![Last Commit](https://img.shields.io/github/last-commit/LearningBotsOfficial/Ether?style=for-the-badge&color=8E44AD)](https://github.com/LearningBotsOfficial/Ether/commits/main)
 
 <p align="center">
   <b>Ether</b> is a high-performance, modular Telegram userbot architecture built with <b>Telethon</b> and <b>PyMongo Async</b>. Designed for developers who prioritize <b>security</b>, <b>sovereignty</b>, and <b>scalability</b>.
@@ -86,6 +80,9 @@ Ether is built on a modern, high-performance stack designed for low latency and 
 ---
 
 ## Configuration
+
+> [!CAUTION]
+> **Security Warning:** Never expose your environment variables or upload your `.env` file to public repositories. Anyone with access to your `API_ID`, `API_HASH`, or `BOT_TOKEN` can take full control of your account. Use your hosting provider's dashboard to set these variables securely.
 
 Ether uses environment variables for configuration. These can be set in a `.env` file for local deployment or in your cloud provider's dashboard.
 
