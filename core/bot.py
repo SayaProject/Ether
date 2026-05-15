@@ -171,21 +171,24 @@ async def inline_help(event):
                             file=WELCOME_DATA["image"],
                             id="welcome_msg",
                             text=WELCOME_DATA["text"],
-                            buttons=buttons
+                            buttons=buttons,
+                            parse_mode='html'
                         )
                     elif media_type == "gif":
                         result = builder.gif(
                             file=WELCOME_DATA["image"],
                             id="welcome_msg",
                             text=WELCOME_DATA["text"],
-                            buttons=buttons
+                            buttons=buttons,
+                            parse_mode='html'
                         )
                     else: # Default to photo
                         result = builder.photo(
                             file=WELCOME_DATA["image"],
                             id="welcome_msg",
                             text=WELCOME_DATA["text"],
-                            buttons=buttons
+                            buttons=buttons,
+                            parse_mode='html'
                         )
                 else:
                     result = builder.article(
@@ -193,7 +196,8 @@ async def inline_help(event):
                         title="Welcome Message",
                         description="DM Protection Welcome",
                         text=WELCOME_DATA["text"],
-                        buttons=buttons
+                        buttons=buttons,
+                        parse_mode='html'
                     )
                 
                 await event.answer([result], cache_time=0)

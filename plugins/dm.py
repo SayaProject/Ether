@@ -329,9 +329,9 @@ def setup(ether, db, owner_id):
                     except Exception as inline_err:
                         logger.error(f"Inline query failed: {inline_err}")
                 if welcome_image:
-                    await event.respond(file=welcome_image, message=text)
+                    await event.respond(file=welcome_image, message=text, parse_mode='html')
                 else:
-                    await event.respond(text)
+                    await event.respond(text, parse_mode='html')
             except Exception as e:
                 logger.error(f"Failed to send welcome: {e}")
         
