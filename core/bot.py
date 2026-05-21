@@ -368,19 +368,25 @@ async def cb_dm(event):
     await event.edit(
         "<blockquote>"
         "<b>DM Protection System</b>\n\n"
-        "<b>Overview:</b>\n"
-        "When someone messages you:\n"
+
+        "<b>How It Works:</b>\n"
         "• First message → Welcome message sent\n"
-        "• Follow-ups → Silently ignored until allowed\n\n"
-        "Only users you <code>.allow</code> can message freely.\n\n"
+        "• Spam messages → Warning system\n"
+        "• Max warns reached → User blocked\n"
+        "• Replying to user → Auto allowed\n\n"
+
         "<b>Commands:</b>\n"
-        "<code>.setwelcome</code> - Set welcome message with buttons\n"
-        "<code>.clearwelcome</code> - Remove welcome message\n"
-        "<code>.allow</code> - Allow user (in their DM)\n"
-        "<code>.disallow</code> - Disallow user (in their DM)\n\n"
-        "<b>Status:</b>\n"
-        "Users who aren't allowed get the welcome on their first message. "
-        "Further messages are ignored to prevent spam."
+        "<code>.setwelcome</code> - Set welcome message\n"
+        "<code>.clearwelcome</code> - Remove welcome\n"
+        "<code>.allow</code> - Allow user\n"
+        "<code>.disallow</code> - Disallow user\n\n"
+
+        "<b>Supports:</b>\n"
+        "• Buttons\n"
+        "• Photos / Videos\n"
+        "• Markdown formatting\n\n"
+
+        "🛡 <b>Powered by Ether</b>"
         "</blockquote>",
         buttons=[[Button.inline("Back", b"help_back")]]
     )
