@@ -18,7 +18,7 @@
 #
 #  Thank you for respecting open-source development.
 # =============================================================================
-from pymongo import AsyncMongoClient
+from motor.motor_asyncio import AsyncIOMotorClient
 from config.config import Config
 from utils.logger import get_logger
 
@@ -31,7 +31,7 @@ logger = get_logger("EtherMongo")
 class EtherMongo:
     
     def __init__(self):
-        self.client: AsyncMongoClient = None
+        self.client: AsyncIOMotorClient = None
         self.db = None
     
     async def connect(self) -> bool:
@@ -40,7 +40,7 @@ class EtherMongo:
             return False
         
         try:
-            self.client = AsyncMongoClient(
+            self.client = AsyncIOMotorClient(
                 Config.MONGO_URI,
                 serverSelectionTimeoutMS=5000
             )
