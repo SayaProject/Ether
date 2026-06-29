@@ -1,24 +1,3 @@
-# =============================================================================
-#  Ether Userbot System
-#
-#  Project Name:  Ether
-#  Author:        LearningBotsOfficial
-#
-#  Repository:    https://github.com/LearningBotsOfficial/Ether
-#
-#  Support:       https://t.me/Ether_Support
-#  Channel:       https://t.me/Ether_Update
-#
-#  License:       Open Source (Keep Credits)
-#
-#  IMPORTANT:
-#    • If you copy, fork, or reuse this project or any part of it,
-#      you MUST retain original credits.
-#    • Proper attribution to Ether project is required.
-#
-#  Thank you for respecting open-source development.
-# =============================================================================
-
 import random
 import os
 import asyncio
@@ -285,7 +264,7 @@ async def inline_help(event):
             ),
             buttons=[
                 [
-                    Button.url("📂 Repository", "https://github.com/LearningBotsOfficial/Ether")
+                    Button.url("📂 Repository", "https://github.com/shnwazdeveloper")
                 ]
             ],
             parse_mode="html"
@@ -550,10 +529,10 @@ BOT_WELCOME_IMAGE = "assets/ether_logo.png"
 
 bot_dm_buttons = [
     [
-        Button.url("📢 Updates", "https://t.me/Ether_Update"),
-        Button.url("💬 Support Group", "https://t.me/EtherSupport")
+        Button.url("📢 Updates", "https://t.me/SayaProject"),
+        Button.url("💬 Support Group", "https://t.me/SayaProject")
     ],
-    [Button.url("📂 Source Code", "https://github.com/LearningBotsOfficial/Ether")],
+    [Button.url("📂 Source Code", "https://github.com/shnwazdeveloper")],
 ]
 
 # ============================================

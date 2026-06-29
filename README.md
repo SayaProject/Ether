@@ -1,17 +1,5 @@
-<div align="center">
-
-<img src="https://i.ibb.co/rKM4mfnx/x.jpg" width="60%" />
-
-# ⚡ Ether Userbot System
-**The Next-Gen Modular Telegram Framework**
-
-![Stars](https://img.shields.io/github/stars/LearningBotsOfficial/Ether)
-![Forks](https://img.shields.io/github/forks/LearningBotsOfficial/Ether)
-
-[![License](https://img.shields.io/github/license/LearningBotsOfficial/Ether?style=for-the-badge&color=94a3b8)](LICENSE)
-
 <p align="center">
-  <b>Ether</b> is a high-performance, modular Telegram userbot architecture built with <b>Telethon</b> + <b>MongoDB</b>. Designed for developers who prioritize security, speed, and clean code.
+  <b>Saya</b> is a high-performance, modular Telegram userbot architecture built with <b>Telethon</b> + <b>MongoDB</b>. Designed for developers who prioritize security, speed, and clean code.
 </p>
 
 
@@ -19,7 +7,7 @@
 
 </div>
 
-## 🛡️ Why Ether is Safe?
+## 🛡️ Why Saya is Safe?
 
 **Zero String Session Reliance**
 
@@ -39,30 +27,6 @@ Unlike traditional userbots that require risky "String Sessions" generated via t
 * **🔐 Privacy First:** Full 2FA support and local session management
 * **📦 Plugin Architecture:** Easily drop new `.py` scripts into the `plugins/` folder
 * **👉 There are many more features — visit the plugins folder or deploy to explore all.**
-
----
-
----
-<br>
-
-<div align="center">
-
-<a href="https://dashboard.render.com/">
-  <img src="https://render.com/images/deploy-to-render-button.svg" width="170">
-</a>
-
-<br>
-
-
-</div>
-
-<details>
-
-<summary align="center">
-
-  ` 🚀 Render Deployment Guide`
-
-</summary>
 
 ---
 
@@ -180,21 +144,6 @@ to see all available commands.
 
 ---
 
-<br>
-
-<div align="center">
-
-<a href="https://justrunmy.app/">
-  <img src="https://img.shields.io/badge/Deploy%20Now-JustRunMyApp-5865F2?style=for-the-badge">
-</a>
-
-</div>
-
-<br>
-
-<details>
-
-<summary align="center">
 
 `🚀 JustRunMyApp Deployment Guide`
 
@@ -284,7 +233,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install python3 python3-pip python3-venv git screen -y
 
 # Clone repository
-git clone https://github.com/LearningBotsOfficial/Ether.git
+git clone https://github.com/Username.git
 
 # Open project folder
 cd Ether
@@ -316,56 +265,3 @@ python main.py
 
 ---
 
-## 🤝 Community & Support
-
-<p align="center">
-  <a href="https://t.me/Ether_Update">
-    <img src="https://img.shields.io/badge/🚀%20Ether%20Userbot-Official%20Channel-5865F2?style=for-the-badge&logo=telegram">
-  </a>
-  <a href="https://t.me/EtherSupport">
-    <img src="https://img.shields.io/badge/💬%20Ether%20Support-Get%20Help-2ECC71?style=for-the-badge&logo=telegram">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://t.me/LearningBotsNetwork">
-    <img src="https://img.shields.io/badge/📢%20Learning%20Bots-Updates%20%26%20Ecosystem-F39C12?style=for-the-badge&logo=telegram">
-  </a>
-</p>
-
----
-
-## ⚠️ License & Terms
-
-Ether is source-available software developed by **LearningBotsOfficial**.
-
-By using, modifying, or sharing this project, you agree to the following terms:
-
-- Original credits to **LearningBotsOfficial** must remain intact.
-- Any public fork or modified version must provide proper attribution to:
-  **LearningBotsOfficial/Ether**
-- Reselling this project or distributing paid/public clones is prohibited.
-- Republishing this project under another name without permission is prohibited.
-- Personal and private modifications are allowed.
-- Use this software responsibly and follow Telegram's Terms of Service.
-
-Failure to follow these terms may result in permission being revoked.
-
-© 2026 LearningBotsOfficial. All rights reserved.
-
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-
-**Made with ❤️ by [LearningBotsOfficial](https://github.com/LearningBotsOfficial)**
-
-[⬆ Back to Top](#-ether-userbot-system)
-
-</div>
