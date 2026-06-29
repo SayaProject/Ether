@@ -33,38 +33,38 @@ async def run_userbot():
     global plugin_loader
 
     try:
-        logger.info("🚀 Starting Userbot")
+        logger.info("Starting Userbot")
 
         db_connected = await ether_db.connect()
 
         if db_connected:
-            logger.info("✅ MongoDB Connected")
+            logger.info("MongoDB Connected")
         else:
-            logger.warning("⚠️ MongoDB Connection Failed")
+            logger.warning("MongoDB Connection Failed")
 
         session_file = f"{Config.SESSION_NAME}.session"
 
         if os.path.exists(session_file):
-            logger.info(f"✅ Session Found: {session_file}")
+            logger.info(f"Session Found: {session_file}")
         else:
-            logger.warning(f"⚠️ Session Missing: {session_file}")
+            logger.warning(f"Session Missing: {session_file}")
 
         client_wrapper = EtherUserClient()
 
         connected = await client_wrapper.connect()
 
         if not connected:
-            logger.error("❌ Failed To Connect User Client")
+            logger.error("Failed To Connect User Client")
             return
 
-        logger.info("✅ User Client Connected")
+        logger.info("User Client Connected")
 
         is_authorized = await client_wrapper.is_authorized()
 
         if is_authorized:
-            logger.info("✅ Userbot Authorized")
+            logger.info("Userbot Authorized")
         else:
-            logger.warning("⚠️ Userbot Not Authorized")
+            logger.warning("Userbot Not Authorized")
             logger.warning("Use /login")
 
         client = client_wrapper.get_client()
@@ -85,53 +85,53 @@ async def run_userbot():
 
         stats = loader.get_stats()
 
-        logger.info(f"✅ Plugins Loaded: {stats['total']}")
-        logger.info(f"📦 {stats['plugins']}")
+        logger.info(f"Plugins Loaded: {stats['total']}")
+        logger.info(f"{stats['plugins']}")
 
-        logger.info("🤖 Userbot Running")
+        logger.info("Userbot Running")
 
         await client.run_until_disconnected()
 
     except asyncio.CancelledError:
-        logger.warning("⚠️ Userbot Cancelled")
+        logger.warning("Userbot Cancelled")
 
     except Exception as e:
-        logger.error(f"❌ Userbot Error: {e}", exc_info=True)
+        logger.error(f"Userbot Error: {e}", exc_info=True)
 
 
 async def run_bot():
     try:
         if not Config.BOT_TOKEN:
-            logger.warning("⚠️ BOT_TOKEN Missing")
+            logger.warning("BOT_TOKEN Missing")
             return
 
-        logger.info("🚀 Starting Bot")
+        logger.info("Starting Bot")
 
         await ether_bot.start()
 
         me = await ether_bot.get_me()
 
-        logger.info(f"✅ Bot Started: @{me.username}")
+        logger.info(f"Bot Started: @{me.username}")
 
         await asyncio.Event().wait()
 
     except asyncio.CancelledError:
-        logger.warning("⚠️ Bot Cancelled")
+        logger.warning("Bot Cancelled")
 
     except Exception as e:
-        logger.error(f"❌ Bot Error: {e}", exc_info=True)
+        logger.error(f"Bot Error: {e}", exc_info=True)
 
 
 async def startup():
     logger.info("════════════════════════════")
-    logger.info("🚀 Ether Starting")
+    logger.info(" Says Starting")
     logger.info("════════════════════════════")
 
     if not validate_integrity():
-        logger.error("❌ SECURITY VIOLATION")
+        logger.error("SECURITY VIOLATION")
         sys.exit(1)
 
-    logger.info("✅ Integrity Validated")
+    logger.info("Integrity Validated")
 
     tasks = [
         asyncio.create_task(run_bot(), name="BotTask"),
@@ -139,11 +139,11 @@ async def startup():
         asyncio.create_task(keep_alive(), name="KeepAliveTask"),
     ]
 
-    logger.info("✅ All Systems Started")
+    logger.info("All Systems Started")
 
     await shutdown_event.wait()
 
-    logger.warning("⚠️ Shutdown Signal Received")
+    logger.warning("Shutdown Signal Received")
 
     for task in tasks:
         task.cancel()
@@ -154,7 +154,7 @@ async def startup():
 
 
 async def shutdown():
-    logger.info("🛑 Shutting Down")
+    logger.info("Shutting Down")
 
     with suppress(Exception):
         await ether_bot.stop()
@@ -162,7 +162,7 @@ async def shutdown():
     with suppress(Exception):
         await ether_db.close()
 
-    logger.info("✅ Shutdown Complete")
+    logger.info("Shutdown Complete")
 
 
 def main():
@@ -179,10 +179,10 @@ def main():
         loop.run_until_complete(startup())
 
     except KeyboardInterrupt:
-        logger.warning("⚠️ Interrupted")
+        logger.warning("Interrupted")
 
     except Exception as e:
-        logger.error(f"❌ Fatal Error: {e}", exc_info=True)
+        logger.error(f"Fatal Error: {e}", exc_info=True)
 
     finally:
         loop.run_until_complete(shutdown())
