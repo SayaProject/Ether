@@ -1,24 +1,3 @@
-# =============================================================================
-#  Ether Userbot System
-#
-#  Project Name:  Ether
-#  Author:        LearningBotsOfficial
-#
-#  Repository:    https://github.com/LearningBotsOfficial/Ether
-#
-#  Support:       https://t.me/Ether_Support
-#  Channel:       https://t.me/Ether_Update
-#
-#  License:       Open Source (Keep Credits)
-#
-#  IMPORTANT:
-#    • If you copy, fork, or reuse this project or any part of it,
-#      you MUST retain original credits.
-#    • Proper attribution to Ether project is required.
-#
-#  Thank you for respecting open-source development.
-# =============================================================================
-
 from dotenv import load_dotenv
 import os
 
@@ -27,9 +6,9 @@ load_dotenv()
 
 class Config:
 
-    API_ID: int = int(os.getenv("API_ID", 0))
-    API_HASH: str = os.getenv("API_HASH", "")
-    OWNER_ID: int = int(os.getenv("OWNER_ID", 0))
+    API_ID: int = int(os.getenv("30422005", 0))
+    API_HASH: str = os.getenv("5170ded206641d73215baf40175a6924", "")
+    OWNER_ID: int = int(os.getenv("8693729060", 0))
     
     BOT_TOKEN: str = os.getenv("BOT_TOKEN", "")
     BOT_USERNAME: str = os.getenv("BOT_USERNAME", "")  # Without @, e.g. "Etheruserbot"

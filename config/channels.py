@@ -1,26 +1,10 @@
-# =============================================================================
-#  Ether Userbot System - Official Channels
-#
-#  ⚠️  WARNING: DO NOT MODIFY THIS FILE ⚠️
-#
-#  This file contains official channel links and integrity checks.
-#  Any modification to this file will cause the bot to stop working.
-#  The integrity check ensures the channels remain unchanged.
-#
-#  Unauthorized modification violates the project license.
-#
-#  Thank you for respecting open-source development.
-# =============================================================================
-
 import hashlib
 import base64
 
 # Official channels - DO NOT MODIFY
 _CHANNELS = {
-    "learning_bots": "https://t.me/learning_bots",
-    "ether_update": "https://t.me/Ether_Update",
-    "learning_bots_support": "https://t.me/LearningBotsCommunity",
-    "ether_support": "https://t.me/EtherSupport"
+    "Saya Project": "https://github.com/SayaProject",
+    "Saya Projectt": "https://t.me/SayaProject"
 }
 
 _INTEGRITY_SIGNATURE = base64.b64encode(
